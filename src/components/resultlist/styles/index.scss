@@ -1,0 +1,37 @@
+.results {
+    background: #ffffff;
+    width: 500px;
+    color: rgb(41, 41, 41);
+    line-height: 30px;
+    border-radius: 20px;
+    box-shadow: 0 0 1em rgb(221, 221, 221);
+    font-size: 14px;
+    text-align: left;
+    padding-left: 10px;
+    padding-right: 10px;
+
+    .overflow{
+        height: 400px;
+        overflow: auto;
+    }
+
+    .hide{
+        display: none;
+    }
+
+}
+
+// Se o número de usuarios for maior que 10, usar id de classe com overflow
+
+li {
+    list-style-type: none;
+    padding: 5px;
+}
+
+li:hover {
+    Background-color: rgb(245, 245, 245);
+}
+
+.list-group {
+    list-style-type: none;
+}
