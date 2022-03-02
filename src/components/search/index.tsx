@@ -17,7 +17,7 @@ const Search: React.FC<Props> = ({ searchInput, handleFilterChange, showHistoryS
 
     return (
         <input
-            className="content_search"
+            className="input"
             value={searchInput}
             onChange={handleFilterChange}
             onClick={showHistorySearch}

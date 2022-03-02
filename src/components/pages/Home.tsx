@@ -1,57 +1,43 @@
-import './styles/index.css'
+import './styles/index.scss'
 import { useState, useEffect, useRef } from 'react'
 import ResultList from '../resultlist'
 import { User } from '../types'
 import Search from '../search'
-import getData from '../../services/Users'
+import { getData } from '../../services/Users'
+import { debounce} from '../../debounce'
 
 const Home = () => {
 
     const [userList, setUserList] = useState<User[]>([])
     const [searchInput, setSearchInput] = useState<string>("")
+    const [isHistoric, setIsHistoric] = useState<boolean>(false)
 
     useEffect(() => {
-        window.addEventListener('keydown', (event) => {
-            returnedFunction()
-        });
+        const inputBounce: any = document.querySelector('input')
+
+        inputBounce?.addEventListener('input', debounce(() => {
+            getUserData(inputBounce)
+            console.log("vai")
+        }, 500));
+
     }, [])
 
-    const debounce = (func: any, wait: any) => {
-        let timeout: any;
+    const getUserData = async ({ value }: any) => {
 
-        return function executedFunction(...args: any) {
-            const later = () => {
-                clearTimeout(timeout);
-                func(...args);
-            };
+        if (!value) { setUserList([]); return }
 
-            clearTimeout(timeout);
-            timeout = setTimeout(later, wait);
-        };
-    };
-
-    const returnedFunction = debounce(function () {
+        let result = await getData(value)
+        setUserList(result)
+        setIsHistoric(false)
+    }
 
 
-
-    }, 500);
 
     const handleFilterChange = (e: React.FormEvent<HTMLInputElement>) => {
         e.preventDefault()
 
-
         const { value }: { value: string } = e.currentTarget
         setSearchInput(value)
-
-        if (!value) {
-            setUserList([])
-            return
-        }
-
-        fetch(`https://gorest.co.in/public/v2/users?name=${value}`)
-            .then((response) => response.json())
-            .then((result) => setUserList(result))
-
     }
 
     const setSearchHistory = (user: User): void => {
@@ -75,6 +61,7 @@ const Home = () => {
     const showHistorySearch = () => {
         let userStorage: any = localStorage.getItem('users')
         setUserList(JSON.parse(userStorage))
+        setIsHistoric(true)
     }
 
     return (
@@ -84,15 +71,14 @@ const Home = () => {
                 handleFilterChange={handleFilterChange}
                 showHistorySearch={showHistorySearch}
             />
-            <div className={"search-results"}>
-                <ResultList
-                    userList={userList}
-                    setSearchHistory={setSearchHistory}
-                    unsetSearchHistory={unsetSearchHistory}
-                    setUserList={setUserList}
-                    searchInput={searchInput}
-                />
-            </div>
+            <ResultList
+                userList={userList}
+                setSearchHistory={setSearchHistory}
+                unsetSearchHistory={unsetSearchHistory}
+                setUserList={setUserList}
+                searchInput={searchInput}
+                isHistoric={isHistoric}
+            />
         </div>
     )
 }
