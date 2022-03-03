@@ -1,18 +1,17 @@
 import './styles/index.scss'
 import { useState, useEffect, useRef } from 'react'
-import ResultItem from './ResultItem'
-import { User } from '../types'
+import ResultItem from './item'
+import { User } from '../../types'
+import { Props } from './types'
 
-type Props = {
-    userList: User[],
-    setSearchHistory(user: User): void,
-    unsetSearchHistory(user: User): void
-    setUserList([]): void
-    searchInput: string
-    isHistoric: boolean
-}
-
-const ResultList = ({ userList, setSearchHistory, unsetSearchHistory, setUserList, searchInput, isHistoric }: Props) => {
+const ResultList = ({
+    userList,
+    setSearchHistory,
+    unsetSearchHistory,
+    setUserList,
+    searchInput,
+    isHistoric
+}: Props) => {
 
     const container = useRef<HTMLHeadingElement>(null)
     const [styleClass, setStyleClass] = useState<string>("")
@@ -35,12 +34,12 @@ const ResultList = ({ userList, setSearchHistory, unsetSearchHistory, setUserLis
         }
     }
 
-    const checkStyleClass = () => setStyleClass(userList.length > 10 ? "overflow" : "overflow-hide")
+    const checkStyleClass = () => setStyleClass(userList?.length > 10 ? "overflow" : "overflow-hide")
 
     return (
         <>
             {
-                userList.length > 0 && <div className={"result-list"} ref={container}>
+                userList?.length > 0 && <div className={"result-list"} ref={container}>
                     <div className={`${styleClass}`} >
                         <ul id="list-group">
                             {

@@ -1,11 +1,10 @@
-
 type Params = {
   content: string
   toHighlight: string
 }
 
 const HighlightText = ({ content, toHighlight }: Params) => {
-  const regex = new RegExp(`(${toHighlight})`, 'i')
+  const regex = new RegExp(`(${toHighlight})`) //template literals
 
   return (
     <>

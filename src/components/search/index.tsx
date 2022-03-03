@@ -1,28 +1,54 @@
-import { useEffect, useRef } from 'react'
-import './styles/index.css'
+import { useEffect } from 'react'
+import { Props } from './types'
+import Input from '../base/input'
+import ResultList from './resultlist'
 
-type Props = {
-    searchInput: string
-    handleFilterChange(e: React.FormEvent<HTMLInputElement>): void
-    showHistorySearch(): void
-}
-
-const Search: React.FC<Props> = ({ searchInput, handleFilterChange, showHistorySearch }) => {
-    const inputRef = useRef<HTMLInputElement>(null)
+const Search = ({
+    searchInput,
+    handleFilterChange,
+    showHistorySearch,
+    searchInputRef,
+    getUserData,
+    userList,
+    setSearchHistory,
+    unsetSearchHistory,
+    setUserList,
+    isHistoric }: Props) => {
 
     useEffect(() => {
-        inputRef.current?.focus()
-    }, [])
-    
+        searchInputRef?.current?.focus()
+    }, [searchInputRef])
+
+    const handleSubmit = () => {
+        getUserData(searchInput)
+    }
 
     return (
-        <input
-            className="input"
-            value={searchInput}
-            onChange={handleFilterChange}
-            onClick={showHistorySearch}
-            ref={inputRef}
-        />
+        // <form className="content" onSubmit={handleSubmit}>
+        <>
+            <Input
+                type="text"
+                className="input"
+                value={searchInput}
+                onChange={handleFilterChange}
+                onClick={showHistorySearch}
+                inputRef={searchInputRef}
+            />
+            <Input
+                type="submit"
+                className="main-button"
+                value="Pesquisar"
+            />
+            <ResultList
+                userList={userList}
+                setSearchHistory={setSearchHistory}
+                unsetSearchHistory={unsetSearchHistory}
+                setUserList={setUserList}
+                searchInput={searchInput}
+                isHistoric={isHistoric}
+            />
+        </>
+        // </form>
     )
 }
 export default Search

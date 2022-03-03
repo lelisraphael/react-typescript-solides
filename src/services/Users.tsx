@@ -1,8 +1,10 @@
-const getData = (value: string) => {
+const getData = async (value: string) => {
 
-    return fetch(`https://gorest.co.in/public/v2/users?name=${value}`)
-        .then((response) => response.json())
-        .then((result) => { return result })
+    const url = "https://gorest.co.in/public/v2/users?name="
+
+    const response = await fetch(url + value)
+    const result = await response.json()
+    return result
 }
 
 export { getData }

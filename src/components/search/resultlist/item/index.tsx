@@ -1,15 +1,7 @@
-import { User } from '../types'
-import HighlightText from '../../highlightText'
-
-import { FaRegClock, FaRegTimesCircle } from 'react-icons/fa';
-
-type Props = {
-    user: User;
-    setSearchHistory(user: User): void;
-    unsetSearchHistory(user: User): void;
-    searchInput: string
-    isHistoric: boolean
-}
+// import { User } from '../../../types'
+import HighlightText from '../../../../services/utils/highlightText'
+import { Props } from './types'
+import { FaRegClock } from 'react-icons/fa';
 
 const ResultItem: React.FC<Props> = ({ setSearchHistory, user, unsetSearchHistory, searchInput, isHistoric }) => {
     return (
@@ -31,7 +23,6 @@ const ResultItem: React.FC<Props> = ({ setSearchHistory, user, unsetSearchHistor
                 </>
                 :
                 <a href="#" onClick={() => setSearchHistory(user)}>
-
                     <HighlightText
                         content={user?.name}
                         toHighlight={searchInput}
