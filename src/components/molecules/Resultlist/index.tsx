@@ -1,6 +1,6 @@
-import './styles/index.scss'
 import { useState, useEffect, useRef } from 'react'
-import ResultItem from './item'
+import './styles.scss'
+import ResultItem from './Item'
 import { User } from '../../types'
 import { Props } from './types'
 

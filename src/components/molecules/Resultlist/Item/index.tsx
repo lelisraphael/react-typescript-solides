@@ -1,4 +1,3 @@
-// import { User } from '../../../types'
 import HighlightText from '../../../../services/utils/highlightText'
 import { Props } from './types'
 import { FaRegClock } from 'react-icons/fa';

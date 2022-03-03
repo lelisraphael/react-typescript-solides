@@ -1,5 +1,5 @@
-import { InputProps } from './type'
-import './styles.scss'
+import { InputProps } from './types'
+import './styles.scss';
 
 const Input = ({
     ...props
@@ -10,7 +10,8 @@ const Input = ({
             {...props}
             onChange={props.onChange}
             onClick={props.onClick}
-            ref={props.inputRef}
+            onKeyPress={props.onKeyPress}
+            ref={props.inputref}
         />
     )
 }

@@ -1,6 +1,6 @@
 import './App.css';
 import Home from './components/pages/Home';
-import Header from './components/base/header'
+import Header from './components/organisms/Header'
 
 function Main() {
   return (

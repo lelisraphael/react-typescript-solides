@@ -1,30 +1,22 @@
-import { useEffect } from 'react'
 import { Props } from './types'
-import Input from '../base/input'
-import ResultList from './resultlist'
+import Input from '../../atoms/Input'
+import Button from '../../atoms/Button'
+import ResultList from '../../molecules/Resultlist'
 
-const Search = ({
-    searchInput,
+const SearchForm = ({
     handleFilterChange,
     showHistorySearch,
-    searchInputRef,
-    getUserData,
+    handleSubmit,
+    inputref,
     userList,
     setSearchHistory,
     unsetSearchHistory,
     setUserList,
-    isHistoric }: Props) => {
-
-    useEffect(() => {
-        searchInputRef?.current?.focus()
-    }, [searchInputRef])
-
-    const handleSubmit = () => {
-        getUserData(searchInput)
-    }
+    searchInput,
+    isHistoric,
+}: Props) => {
 
     return (
-        // <form className="content" onSubmit={handleSubmit}>
         <>
             <Input
                 type="text"
@@ -32,12 +24,13 @@ const Search = ({
                 value={searchInput}
                 onChange={handleFilterChange}
                 onClick={showHistorySearch}
-                inputRef={searchInputRef}
+                inputref={inputref}
+            // onKeyPress={handleSubmit}
             />
-            <Input
-                type="submit"
-                className="main-button"
+            <Button
+                className="button"
                 value="Pesquisar"
+                onClick={handleSubmit}
             />
             <ResultList
                 userList={userList}
@@ -48,7 +41,6 @@ const Search = ({
                 isHistoric={isHistoric}
             />
         </>
-        // </form>
     )
 }
-export default Search
+export default SearchForm

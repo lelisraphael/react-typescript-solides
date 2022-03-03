@@ -1,5 +1,4 @@
-export type InputProps = {
-    type: string
+export type ButtonProps = {
     className: string
     value: string
     onChange?(): void

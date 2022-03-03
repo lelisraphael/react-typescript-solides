@@ -1,8 +1,8 @@
-import './styles/index.scss'
 import { useState, useEffect, useRef } from 'react'
+import './styles.scss'
 import { User } from '../types'
-import Search from '../search'
-import { getData } from '../../services/Users'
+import Search from '../organisms/Search'
+import { getData } from '../../services/userApi'
 import { debounce } from '../../services/utils/debounce'
 
 const Home = () => {
@@ -20,18 +20,23 @@ const Home = () => {
                 getUserData(searchInputRef.current?.value)
             }, 500));
 
+          
+            searchInputRef.current?.removeEventListener('keyup',
+            debounce(() => {
+                getUserData(searchInputRef.current?.value)
+            }, 500));
     }, [])
+
+    const handleFilterChange = () => {
+        let value: any = searchInputRef.current?.value
+        setSearchInput(value)
+    }
 
     const getUserData = async (value: string | undefined) => {
         if (!value) { setUserList([]); return }
         let result = await getData(value)
         setUserList(result)
         setIsHistoric(false)
-    }
-
-    const handleFilterChange = () => {
-        let value: any = searchInputRef.current?.value
-        setSearchInput(value)
     }
 
     const checkStorageItens = () => {
