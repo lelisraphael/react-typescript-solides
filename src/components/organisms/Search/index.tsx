@@ -38,30 +38,6 @@ const Search = ({
                 searchInput={searchInput}
                 isHistoric={isHistoric}
             />
-
-
-            {/* <Input
-                type="text"
-                className="input"
-                value={searchInput}
-                onChange={handleFilterChange}
-                onClick={showHistorySearch}
-                inputref={searchInputRef}
-            // onKeyPress={handleSubmit}
-            />
-            <Button
-                className="button"
-                value="Pesquisar"
-                onClick={handleSubmit}
-            />
-            <ResultList
-                userList={userList}
-                setSearchHistory={setSearchHistory}
-                unsetSearchHistory={unsetSearchHistory}
-                setUserList={setUserList}
-                searchInput={searchInput}
-                isHistoric={isHistoric}
-            /> */}
         </>
     )
 }
