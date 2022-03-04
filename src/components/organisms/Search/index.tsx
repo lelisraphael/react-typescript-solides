@@ -1,10 +1,10 @@
 import { useEffect } from 'react'
 import { Props } from './types'
-
 import SearchForm from '../../molecules/SearchForm'
 
 const Search = ({
     searchInput,
+    setSearchInput,
     handleFilterChange,
     showHistorySearch,
     searchInputRef,
@@ -25,8 +25,8 @@ const Search = ({
 
     return (
         <>
-
             <SearchForm
+                setSearchInput={setSearchInput}
                 handleFilterChange={handleFilterChange}
                 showHistorySearch={showHistorySearch}
                 inputref={searchInputRef}

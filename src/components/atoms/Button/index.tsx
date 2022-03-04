@@ -9,7 +9,9 @@ const Button = ({
         <button
             {...props}
         >
-            {props.value}
+            Pesquisar
         </button>)
 }
 export default Button
+
+

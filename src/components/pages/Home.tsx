@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef } from 'react'
-import './styles.scss'
 import { User } from '../types'
-import Search from '../organisms/Search'
+import './styles.scss'
 import { getData } from '../../services/userApi'
 import { debounce } from '../../services/utils/debounce'
+import Search from '../organisms/Search'
 
 const Home = () => {
 
@@ -20,11 +20,10 @@ const Home = () => {
                 getUserData(searchInputRef.current?.value)
             }, 500));
 
-          
-            searchInputRef.current?.removeEventListener('keyup',
-            debounce(() => {
-                getUserData(searchInputRef.current?.value)
-            }, 500));
+        return () => searchInputRef.current?.removeEventListener('keyup',
+            debounce(() => { }, 500));
+
+
     }, [])
 
     const handleFilterChange = () => {
@@ -32,15 +31,17 @@ const Home = () => {
         setSearchInput(value)
     }
 
+
     const getUserData = async (value: string | undefined) => {
         if (!value) { setUserList([]); return }
         let result = await getData(value)
+
         setUserList(result)
         setIsHistoric(false)
     }
 
     const checkStorageItens = () => {
-        let userData: any = localStorage.getItem('users');
+        const userData: string | null = localStorage.getItem('users');
         if (!userData) localStorage.setItem('users', JSON.stringify([]))
     }
 
@@ -72,6 +73,7 @@ const Home = () => {
         <div className="content">
             <Search
                 searchInput={searchInput}
+                setSearchInput={setSearchInput}
                 searchInputRef={searchInputRef}
                 handleFilterChange={handleFilterChange}
                 showHistorySearch={showHistorySearch}

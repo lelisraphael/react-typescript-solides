@@ -13,7 +13,9 @@ const SearchForm = ({
     unsetSearchHistory,
     setUserList,
     searchInput,
+    setSearchInput,
     isHistoric,
+
 }: Props) => {
 
     return (
@@ -25,7 +27,6 @@ const SearchForm = ({
                 onChange={handleFilterChange}
                 onClick={showHistorySearch}
                 inputref={inputref}
-            // onKeyPress={handleSubmit}
             />
             <Button
                 className="button"
@@ -33,6 +34,7 @@ const SearchForm = ({
                 onClick={handleSubmit}
             />
             <ResultList
+                setSearchInput={setSearchInput}
                 userList={userList}
                 setSearchHistory={setSearchHistory}
                 unsetSearchHistory={unsetSearchHistory}

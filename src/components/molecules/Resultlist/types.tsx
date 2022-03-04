@@ -7,4 +7,5 @@ export type Props = {
     setUserList([]): void
     searchInput: string
     isHistoric: boolean
+    setSearchInput: any
 }

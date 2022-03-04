@@ -1,12 +1,15 @@
+import {User} from '../../../components/types'
+
 export type Props = {
-    searchInput: string
-    handleFilterChange(): void
-    showHistorySearch(): void
-    getUserData(value: string): Promise<void>
-    searchInputRef: any
-    userList: any
-    setSearchHistory: any
-    unsetSearchHistory: any
-    setUserList: any
-    isHistoric: any
+    handleFilterChange(): void;
+    showHistorySearch(): void;
+    getUserData(value: string): Promise<void>;
+    setUserList([]): void 
+    searchInputRef: any;
+    searchInput: string;
+    setSearchInput: any
+    userList: User[];
+    setSearchHistory: any;
+    unsetSearchHistory: any;
+    isHistoric: boolean;
 }

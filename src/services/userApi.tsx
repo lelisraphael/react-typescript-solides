@@ -1,5 +1,4 @@
 const getData = async (value: string) => {
-
     const url = "https://gorest.co.in/public/v2/users?name="
 
     const response = await fetch(url + value)

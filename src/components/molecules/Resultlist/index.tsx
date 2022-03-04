@@ -3,6 +3,7 @@ import './styles.scss'
 import ResultItem from './Item'
 import { User } from '../../types'
 import { Props } from './types'
+import useLiFocus from '../../../hooks/useLiFocus'
 
 const ResultList = ({
     userList,
@@ -10,11 +11,13 @@ const ResultList = ({
     unsetSearchHistory,
     setUserList,
     searchInput,
+    setSearchInput,
     isHistoric
 }: Props) => {
 
     const container = useRef<HTMLHeadingElement>(null)
     const [styleClass, setStyleClass] = useState<string>("")
+    const [focus, setFocus] = useLiFocus(userList.length)
 
     useEffect(() => {
         document.addEventListener("mousedown", handleClickOutside);
@@ -22,7 +25,7 @@ const ResultList = ({
         return () => {
             document.removeEventListener("mousedown", handleClickOutside);
         }
-    }, [])
+    })
 
     useEffect(() => {
         checkStyleClass()
@@ -41,11 +44,13 @@ const ResultList = ({
             {
                 userList?.length > 0 && <div className={"result-list"} ref={container}>
                     <div className={`${styleClass}`} >
-                        <ul id="list-group">
+                        <ul tabIndex={-1} id="list-group">
                             {
                                 userList?.map((user: User, index: number) => {
                                     return (
                                         <ResultItem
+                                            focus={focus === index}
+                                            setSearchInput={setSearchInput}
                                             key={index}
                                             setSearchHistory={setSearchHistory}
                                             user={user}

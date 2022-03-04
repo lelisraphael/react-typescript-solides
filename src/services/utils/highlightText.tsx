@@ -4,7 +4,7 @@ type Params = {
 }
 
 const HighlightText = ({ content, toHighlight }: Params) => {
-  const regex = new RegExp(`(${toHighlight})`) //template literals
+  const regex = new RegExp(`(${toHighlight})`) 
 
   return (
     <>

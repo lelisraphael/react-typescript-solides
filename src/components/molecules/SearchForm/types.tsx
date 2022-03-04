@@ -1,14 +1,17 @@
+import { User } from '../../../components/types'
+
 export type Props = {
     handleFilterChange(): void
     showHistorySearch(): void
-    handleSubmit: any 
+    handleSubmit(): void
+    setSearchHistory(): void
+    unsetSearchHistory(): void
+    setUserList([]): void
     inputref: any
-    userList: any
-    setSearchHistory: any
-    unsetSearchHistory: any
-    setUserList: any
+    userList: User[]
     searchInput: string
-    isHistoric: any
+    setSearchInput: any
+    isHistoric: boolean
 }
 
 

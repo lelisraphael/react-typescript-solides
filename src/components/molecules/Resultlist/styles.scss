@@ -11,26 +11,23 @@
     padding-top: 30px;
     margin-top: -20px;
     z-index: 9998;
-
     .overflow {
         height: 255px;
         overflow: auto;
         margin-top: 15px;
         margin-bottom: 3px;
     }
-
     .hide {
         display: none;
     }
-
-    ::-webkit-scrollbar-track {
+     ::-webkit-scrollbar-track {
         background-color: #f4f4f4;
     }
-    ::-webkit-scrollbar {
+     ::-webkit-scrollbar {
         width: 8px;
         background: #f4f4f4;
     }
-    ::-webkit-scrollbar-thumb {
+     ::-webkit-scrollbar-thumb {
         background: #dad7d7;
     }
 }
@@ -38,14 +35,19 @@
 li {
     list-style-type: none;
     padding: 5px;
-
     .clock-icon {
         margin: 5px;
     }
 }
 
+li:focus-within {
+    background: rgb(226, 226, 226);
+    border: 0 none;
+}
+
 li:hover {
     background-color: rgb(245, 245, 245);
+    border: 0 none;
 }
 
 .list-group {
@@ -55,6 +57,7 @@ li:hover {
 a:link {
     color: #535353;
     text-decoration: none;
+    border: 0 none;
 }
 
 a:visited {
@@ -65,4 +68,5 @@ a:visited {
 a:active {
     color: #535353;
     text-decoration: none;
+    border: 0 none;
 }
